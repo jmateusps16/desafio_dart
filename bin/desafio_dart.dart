@@ -1,7 +1,7 @@
 import 'dart:io';
-import '../Models/Person.dart';
-import '../Models/PersonCollection.dart';
-import '../Models/PersonEnum.dart';
+import '../Models/person.dart';
+import '../Models/person_collection.dart';
+import '../Models/person_enum.dart';
 
 class Program {
   PersonCollection collection = PersonCollection();
@@ -17,13 +17,12 @@ class Program {
 5 - Excluir Empresa
 0 - Para sair.
 """);
-
-    return int.parse(stdin.readLineSync()!);
+    return int.parse(stdin.readLineSync() ?? "0");
   }
 
   void incluirEmpresa() {
-    var person = Person();
-    person.setData(PersonEnum.Enterprise);
+    Person person = Person();
+    person.setData(PersonEnum.enterprise);
     collection.add(person);
   }
 
@@ -61,6 +60,6 @@ class Program {
 }
 
 void main(List<String> arguments) {
-  var programa = Program();
+  Program programa = Program();
   programa.menu();
 }

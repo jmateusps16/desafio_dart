@@ -1,4 +1,4 @@
-import 'Person.dart';
+import 'person.dart';
 
 class PersonCollection {
   List<Person> persons = <Person>[];

@@ -1,8 +1,8 @@
 class Address {
-  int Id = 0;
-  String Logradoro = "";
-  String Complemento = "";
-  String Bairro = "";
-  String Estado = "";
-  String Cep = "";
+  int id = 0;
+  String street = "";
+  String complement = "";
+  String district = "";
+  String state = "";
+  String zipCode = "";
 }

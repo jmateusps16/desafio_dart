@@ -1,7 +1,7 @@
-import 'Address.dart';
-import 'Document.dart';
-import 'PeronsValue.dart';
-import 'PersonEnum.dart';
+import 'address.dart';
+import 'document.dart';
+import 'person_value.dart';
+import 'person_enum.dart';
 import 'dart:io';
 
 class Person {
@@ -10,7 +10,7 @@ class Person {
   List<PersonValue> values = <PersonValue>[];
   List<Person> persons = <Person>[];
   List<Document> documents = <Document>[];
-  Address endereco = Address();
+  Address address = Address();
 
   void setDocument() {
     int opcao = 1;
@@ -68,16 +68,21 @@ class Person {
   }
 
   void setAddressData() {
-    print("Informe o Logradoro: ");
-    endereco.Logradoro = stdin.readLineSync() ?? "";
-    print("Informe o Complemento: ");
-    endereco.Complemento = stdin.readLineSync() ?? "";
-    print("Informe o Bairro: ");
-    endereco.Bairro = stdin.readLineSync() ?? "";
-    print("Informe o Estado: ");
-    endereco.Estado = stdin.readLineSync() ?? "";
-    print("Informe o Cep: ");
-    endereco.Cep = stdin.readLineSync() ?? "";
+    stdout.writeln("""
+*********************
+* Incluindo Empresa *
+*********************
+""");
+    stdout.write("Informe o Logradoro: ");
+    address.street = stdin.readLineSync() ?? "";
+    stdout.write("Informe o Complemento: ");
+    address.complement = stdin.readLineSync() ?? "";
+    stdout.write("Informe o Bairro: ");
+    address.district = stdin.readLineSync() ?? "";
+    stdout.write("Informe o Estado: ");
+    address.state = stdin.readLineSync() ?? "";
+    stdout.write("Informe o Cep: ");
+    address.zipCode = stdin.readLineSync() ?? "";
   }
 
   void setData(PersonEnum type) {
@@ -88,7 +93,7 @@ class Person {
     do {
       print("1 - Informações Pessoal");
       print("2 - Informações Pessoal");
-      if (type == PersonEnum.Enterprise) print("3 - Pessoas");
+      print("3 - Pessoas");
       print("0 - Sair");
       opcao = int.parse(stdin.readLineSync() ?? "0");
 
@@ -99,7 +104,7 @@ class Person {
         case 2:
           break;
         case 3:
-          if (type == PersonEnum.Enterprise) {
+          if (type == PersonEnum.enterprise) {
             adicionarPessoa();
           } else {
             print("Opcao Inválida");

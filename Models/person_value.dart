@@ -1,8 +1,8 @@
-import 'PersonValueEnum.dart';
+import 'person_value_enum.dart';
 import 'dart:io';
 
 class PersonValue {
-  PersonValueEnum type = PersonValueEnum.None;
+  PersonValueEnum type = PersonValueEnum.none;
   String value = "";
 
   void setData() {
@@ -12,7 +12,7 @@ class PersonValue {
     int valueType = int.parse(stdin.readLineSync() ?? "0");
     type = PersonValueEnum.values[valueType];
 
-    print("informe o ${type.name}:");
+    stdout.write("informe o ${type.name}: ");
     value = stdin.readLineSync() ?? "";
   }
 }
