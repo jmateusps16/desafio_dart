@@ -1,73 +1,66 @@
 import 'dart:io';
-import 'package:desafio_dart/physical_person.dart';
+import '../Models/Person.dart';
+import '../Models/PersonCollection.dart';
+import '../Models/PersonEnum.dart';
 
-enum MenuOptions {
-  exit,
-  addPhysicalPerson,
-  addEnterprise,
+class Program {
+  PersonCollection collection = PersonCollection();
+  int menuLevel = 0;
+  int opcao = 0;
+
+  int obterOpcao() {
+    print("""
+1 - Incluir Empresa
+2 - Buscar Empresa (cnpj)
+3 - Buscar Empresa (cnpj, cpf) [socio]
+4 - Listagem Empresa
+5 - Excluir Empresa
+0 - Para sair.
+""");
+
+    return int.parse(stdin.readLineSync()!);
+  }
+
+  void incluirEmpresa() {
+    var person = Person();
+    person.setData(PersonEnum.Enterprise);
+    collection.add(person);
+  }
+
+  void listarEmpresa() {
+    for (int x = 0; x < collection.persons.length; x++) {
+      print("id: ${collection.persons[x].id}");
+      print("total Pessoas: ${collection.persons[x].persons.length}");
+      for (int y = 0; y < collection.persons[x].values.length; y++) {
+        print(
+            "${collection.persons[x].values[y].type.name}: ${collection.persons[x].values[y].value}");
+      }
+    }
+  }
+
+  void menu() {
+    do {
+      opcao = obterOpcao();
+
+      switch (opcao) {
+        case 1:
+          incluirEmpresa();
+          break;
+        case 2:
+          break;
+        case 3:
+          break;
+        case 4:
+          listarEmpresa();
+          break;
+        case 5:
+          break;
+      }
+    } while (opcao != 0);
+  }
 }
 
 void main(List<String> arguments) {
-  //MenuOptions menu;
-  var pessoasFisica = <PhysicalPerson>[];
-  int opcao = -1;
-  do {
-    stdout.writeln("0 - Para sair.");
-    stdout.writeln("1 - Incluir Pessoa");
-    stdout.writeln("2 - Imprimir lista de Pessoas");
-    stdout.write("Informe a opção desejada: ");
-    opcao = int.parse(stdin.readLineSync()!);
-
-    switch (opcao) {
-      case 1:
-        stdout.write("Informe o nome: ");
-        String inName = stdin.readLineSync()!;
-        stdout.write("Informe o documento: ");
-        int inDocument = int.parse(stdin.readLineSync()!);
-        stdout.write("Informe a Rua (Logradouro): ");
-        String inStreet = stdin.readLineSync()!;
-        stdout.write("Informe o Numero: ");
-        String inNumber = stdin.readLineSync()!;
-        stdout.write("Informe o Complemento: ");
-        String inComplement = stdin.readLineSync()!;
-        stdout.write("Informe o Bairro: ");
-        String inDistrict = stdin.readLineSync()!;
-        stdout.write("Informe a Cidade: ");
-        String inCity = stdin.readLineSync()!;
-        stdout.write("Informe o Estado: ");
-        String inState = stdin.readLineSync()!;
-        stdout.write("Informe o Cep: ");
-        String inCep = stdin.readLineSync()!;
-
-        PhysicalPerson.CreateAndAddToList(
-            inName,
-            inDocument,
-            inStreet,
-            inNumber,
-            inComplement,
-            inDistrict,
-            inCity,
-            inState,
-            inCep,
-            pessoasFisica);
-        break;
-      case 2:
-
-        // pessoasFisica.any((element) => {
-        //   return element.document == valor;
-        // });
-        // pessoasFisica.any((pessoa) => pessoa.Documentos.any(
-        //     (documento) => (documento.Value == "123456")));
-        pessoasFisica.forEach((element) {
-          stdout.writeln("Nome: ${element.name}");
-          stdout.writeln("CPF: ${element.document}");
-          stdout.writeln(
-              "Endereço: ${element.street}, ${element.number}, ${element.complement}, ${element.district}, ${element.city}, ${element.state}, CEP ${element.cep}");
-          stdout.writeln("************************\n");
-        });
-        break;
-      default:
-        break;
-    }
-  } while (opcao != 0);
+  var programa = Program();
+  programa.menu();
 }
