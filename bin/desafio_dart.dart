@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../Models/pessoa_fisica.dart';
+import 'package:desafio_dart/pessoa_fisica.dart';
 
 void main(List<String> arguments) {
   stdout.writeln("Vamos inserir uma pessoa!");
