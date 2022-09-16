@@ -1,10 +1,7 @@
 import 'dart:io';
-import '../models/cadastro.dart';
 import '../models/empresa.dart';
 
 List<Empresa> listaDeEmpresas = <Empresa>[];
-List listaDePessoaFisica = [];
-List listaDePessoaJuridica = [];
 
 void mostrarMenuPrincipal() {
   int opcao = -1;
@@ -44,16 +41,28 @@ void lidarComOpcaoDoMenuPrincipal(int opcao) {
     case 2:
       break;
     case 3:
-      listaDeEmpresas.forEach((Empresa empresa) {
-        print(empresa.nome);
-        return;
+      ordernarLista(listaDeEmpresas).forEach((empresa) {
+        stdout.writeln("""
+ID: ${empresa.id}
+CNPJ: ${empresa.documento}
+Razão Social: ${empresa.razaoSocial}
+Nome Fantasia: ${empresa.nome}
+Telefone: ${empresa.telefone}
+Endereço: ${empresa.endereco["rua"]}, ${empresa.endereco["numero"]}, ${empresa.endereco["complemento"]}, ${empresa.endereco["bairro"]}, ${empresa.endereco["cidade"]}/${empresa.endereco["estado"]},${empresa.endereco["cep"]}
+Sócio: ${empresa.socio}
+""");
       });
       return mostrarMenuPrincipal();
-    //break;
     case 4:
       break;
     default:
       print("Obrigado, até mais.");
       break;
   }
+}
+
+List<Empresa> ordernarLista(List<Empresa> lista) {
+  List<Empresa> ordernado = lista.toList();
+  ordernado.sort((a, b) => a.razaoSocial.compareTo(b.razaoSocial));
+  return ordernado;
 }
