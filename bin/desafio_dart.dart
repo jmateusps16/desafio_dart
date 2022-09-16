@@ -1,8 +1,6 @@
 import 'dart:io';
-import '../lib/models/cadastro.dart';
+import '../lib/controllers/controle_de_fluxos.dart';
 
 void main(List<String> arguments) {
-  List listaDeEmpresas = [];
-  List listaDePessoaFisica = [];
-  List listaDePessoaJuridica = [];
+  mostrarMenuPrincipal();
 }

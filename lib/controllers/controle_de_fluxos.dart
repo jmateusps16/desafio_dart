@@ -1,7 +1,13 @@
 import 'dart:io';
 import '../models/cadastro.dart';
+import '../models/empresa.dart';
+
+List<Empresa> listaDeEmpresas = <Empresa>[];
+List listaDePessoaFisica = [];
+List listaDePessoaJuridica = [];
 
 void mostrarMenuPrincipal() {
+  int opcao = -1;
   stdout.writeln("""
 ********************************
 * Bem vindo                    *
@@ -13,6 +19,9 @@ void mostrarMenuPrincipal() {
 * 4. Selecionar Empresa        *
 ********************************
 """);
+  stdout.write("Opção desejada: ");
+  opcao = lerOpcaoMenuPrincipal();
+  lidarComOpcaoDoMenuPrincipal(opcao);
 }
 
 int lerOpcaoMenuPrincipal() {
@@ -29,12 +38,18 @@ int lerOpcaoMenuPrincipal() {
 void lidarComOpcaoDoMenuPrincipal(int opcao) {
   switch (opcao) {
     case 1:
-      Cadastro.cadastroEmpresa();
-      break;
+      Empresa novaEmpresa = Empresa.cadastroEmpresa();
+      listaDeEmpresas.add(novaEmpresa);
+      return mostrarMenuPrincipal();
     case 2:
       break;
     case 3:
-      break;
+      listaDeEmpresas.forEach((Empresa empresa) {
+        print(empresa.nome);
+        return;
+      });
+      return mostrarMenuPrincipal();
+    //break;
     case 4:
       break;
     default:

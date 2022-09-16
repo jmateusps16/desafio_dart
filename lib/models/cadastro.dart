@@ -1,26 +1,16 @@
 import 'dart:io';
 import 'package:desafio_dart/models/empresa.dart';
 import 'package:desafio_dart/models/pessoa_juridica.dart';
-
-import '/models/pessoa_fisica.dart';
+import '../controllers/controle_de_fluxos.dart';
+import '../models/pessoa_fisica.dart';
 
 class Cadastro {
-  static cadastroEmpresa() {
-    String documento = "";
-    String razaoSocial = "";
-    String nome = "";
-    String telefone = "";
-    Map<String, String> endereco = lereEndereco();
-    String socio = "";
-    Empresa novaEmpresa =
-        Empresa(documento, razaoSocial, nome, telefone, endereco, socio);
-
-    return novaEmpresa;
-  }
-
   static cadastroPessoaFisica() {
-    String documento = "";
-    String nome = "";
+    stdout.writeln("Por gentileza fornaça os dados solicitados abaixo.");
+    stdout.write("CPF: ");
+    String documento = stdin.readLineSync()!;
+    stdout.write("Nome: ");
+    String nome = stdin.readLineSync()!;
     Map<String, String> endereco = lereEndereco();
     PessoaFisica novaPessoaFisica = PessoaFisica(nome, documento, endereco);
 
@@ -28,9 +18,13 @@ class Cadastro {
   }
 
   static cadastroPessoaJuridica() {
-    String documento = "";
-    String razaoSocial = "";
-    String nome = "";
+    stdout.writeln("Por gentileza fornaça os dados solicitados abaixo.");
+    stdout.write("CNPJ: ");
+    String documento = stdin.readLineSync()!;
+    stdout.write("Razão Social: ");
+    String razaoSocial = stdin.readLineSync()!;
+    stdout.write("Nome Fantasia: ");
+    String nome = stdin.readLineSync()!;
     Map<String, String> endereco = lereEndereco();
     PessoaJuridica novaPessoaJuridica =
         PessoaJuridica(documento, razaoSocial, nome, endereco);
@@ -39,6 +33,12 @@ class Cadastro {
   }
 
   static lereEndereco() {
+    stdout.writeln("""
+************************
+* Cadastro do Endereço.*
+************************
+""");
+    stdout.write("Rua: ");
     String rua = stdin.readLineSync() ?? "vazio";
     stdout.write("Numero: ");
     String numero = stdin.readLineSync() ?? "vazio";
