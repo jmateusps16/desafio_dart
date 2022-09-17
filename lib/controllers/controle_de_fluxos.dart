@@ -59,7 +59,8 @@ Endereço: ${empresa.socio.endereco["rua"]}, ${empresa.socio.endereco["numero"]}
       });
       return mostrarMenuPrincipal();
     case 4:
-      break;
+      excluirEmpresa();
+      return mostrarMenuPrincipal();
     default:
       print("Obrigado, até mais.");
       break;
@@ -109,8 +110,9 @@ Não existe empresa cadastrada.
     if (empresa.documento == input) {
       imprimirEmpresas(empresa);
     } else {
-      print(
-          "\nNão foi possível encontrar a empresa informada. Tente novamente.\n");
+      stdout.writeln("""
+Não existe empresa cadastrada com esse CNPJ.
+""");
     }
   }
 }
@@ -137,8 +139,9 @@ Não existe empresa cadastrada.
       }
     }
   } else {
-    print(
-        "Não foi possível encontrar o sócio com esses dados. Tente novamente.");
+    stdout.writeln("""
+Não existe empresa cadastrada para o socio informado.
+""");
   }
 }
 
@@ -155,4 +158,23 @@ Documento: ${empresa.socio.documento}
 Nome: ${empresa.socio.nome}
 Endereço: ${empresa.socio.endereco["rua"]}, ${empresa.socio.endereco["numero"]}, ${empresa.socio.endereco["complemento"]}, ${empresa.socio.endereco["bairro"]}, ${empresa.socio.endereco["cidade"]}/${empresa.socio.endereco["estado"]}, ${empresa.socio.endereco["cep"]}
 """);
+}
+
+void excluirEmpresa() {
+  stdout.writeln("""
+
+***********************
+* Exclusão de Empresa *
+***********************
+""");
+  stdout.write("Informe o ID: ");
+  String empresaID = stdin.readLineSync()!;
+  if (listaDeEmpresas.isEmpty) {
+    stdout.writeln("""
+Não existe empresa cadastrada no momento.
+""");
+    return;
+  }
+
+  listaDeEmpresas.removeWhere((element) => element.id == empresaID);
 }
