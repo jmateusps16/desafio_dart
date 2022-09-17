@@ -46,7 +46,7 @@ void lidarComOpcaoDoMenuPrincipal(int opcao) {
       ordernarLista(listaDeEmpresas).forEach((empresa) {
         stdout.writeln("""
 ID: ${empresa.id}
-CNPJ: ${empresa.documento}
+CNPJ: ${empresa.documento} Data Cadastro: ${empresa.dataInclusao}
 Razão Social: ${empresa.razaoSocial}
 Nome Fantasia: ${empresa.nome}
 Telefone: ${empresa.telefone}
@@ -148,7 +148,7 @@ Não existe empresa cadastrada para o socio informado.
 void imprimirEmpresas(Empresa empresa) {
   stdout.writeln("""
 ID: ${empresa.id}
-CNPJ: ${empresa.documento}
+CNPJ: ${empresa.documento} Data Cadastro: ${empresa.dataInclusao}
 Razão Social: ${empresa.razaoSocial}
 Nome Fantasia: ${empresa.nome}
 Telefone: ${empresa.telefone}

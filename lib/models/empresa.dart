@@ -6,6 +6,7 @@ import 'dart:io';
 class Empresa extends PessoaJuridica {
   final String telefone;
   final Pessoa socio;
+  final DateTime dataCriacao = DateTime.now();
   Empresa(super.documento, super.razaoSocial, super.nome, this.telefone,
       super.endereco, this.socio);
 
