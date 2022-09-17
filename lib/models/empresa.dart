@@ -18,12 +18,12 @@ class Empresa extends PessoaJuridica {
 Entrada inválida, por gentileza forneça apenas os 14 digitos do CNPJ.
 """);
       stdout.write("CNPJ: ");
-      documento = stdin.readLineSync()!.toUpperCase();
+      documento = stdin.readLineSync()!;
     }
     stdout.write("Razão Social: ");
-    String razaoSocial = stdin.readLineSync()!;
+    String razaoSocial = stdin.readLineSync() ?? "Não Informado";
     stdout.write("Nome Fantasia: ");
-    String nome = stdin.readLineSync()!;
+    String nome = stdin.readLineSync() ?? "Não Informado";
     stdout.write("Telefone: ");
     String telefone = stdin.readLineSync()!;
     while (validaApenasNumero(telefone)) {

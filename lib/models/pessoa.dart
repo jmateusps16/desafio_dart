@@ -13,14 +13,18 @@ abstract class Pessoa {
 
   //String get tipo => tipo;
 
-  Pessoa(this.nome, this.documento, this.endereco);
+  Pessoa(this.documento, this.nome, this.endereco);
 
   static cadastroPessoa() {
     stdout.writeln("""
-Informe o tipo do sócio
-1. Pessoa Física
-2. Pessoa Jurídica
+
+***************************
+* Informe o tipo do sócio *
+* 1. Pessoa Física        *
+* 2. Pessoa Jurídica      *
+***************************
 """);
+    stdout.write("Opção: ");
     String inputUsuario = stdin.readLineSync()!;
     while (inputUsuario.isNotEmpty) {
       if (inputUsuario == "1") {

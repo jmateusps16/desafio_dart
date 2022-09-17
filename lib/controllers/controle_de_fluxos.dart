@@ -40,7 +40,8 @@ void lidarComOpcaoDoMenuPrincipal(int opcao) {
       listaDeEmpresas.add(novaEmpresa);
       return mostrarMenuPrincipal();
     case 2:
-      break;
+      buscarEmpresa();
+      return mostrarMenuPrincipal();
     case 3:
       ordernarLista(listaDeEmpresas).forEach((empresa) {
         stdout.writeln("""
@@ -69,4 +70,89 @@ List<Empresa> ordernarLista(List<Empresa> lista) {
   List<Empresa> ordernado = lista.toList();
   ordernado.sort((a, b) => a.razaoSocial.compareTo(b.razaoSocial));
   return ordernado;
+}
+
+void buscarEmpresa() {
+  stdout.writeln("""
+
+***************************
+* Informe o tipo do sócio *
+* 1. Pesquisar por CNPJ   * 
+* 2. Pesquisar por Socio  *
+***************************
+""");
+  stdout.write("Opção: ");
+  String inputUsuario = stdin.readLineSync()!;
+  while (inputUsuario.isNotEmpty) {
+    if (inputUsuario == "1") {
+      pesquisarEmpresaPorCNPJ();
+      return;
+    } else if (inputUsuario == "2") {
+      pesquisarPorSicio();
+      return;
+    }
+  }
+}
+
+void pesquisarEmpresaPorCNPJ() {
+  if (listaDeEmpresas.isEmpty) {
+    stdout.writeln("""
+Não existe empresa cadastrada.
+""");
+    return;
+  }
+
+  stdout.write("Informe o CNPJ da Empresa: ");
+  final input = stdin.readLineSync()!;
+
+  for (Empresa empresa in listaDeEmpresas) {
+    if (empresa.documento == input) {
+      imprimirEmpresas(empresa);
+    } else {
+      print(
+          "\nNão foi possível encontrar a empresa informada. Tente novamente.\n");
+    }
+  }
+}
+
+void pesquisarPorSicio() {
+  if (listaDeEmpresas.isEmpty) {
+    stdout.writeln("""
+Não existe empresa cadastrada.
+""");
+    return;
+  }
+  stdout.write("Por gentileza informe o CPF ou CNPJ: ");
+  final input = stdin.readLineSync()!;
+  if (input.length == 11) {
+    for (var element in listaDeEmpresas) {
+      if (element.socio.documento == input) {
+        imprimirEmpresas(element);
+      }
+    }
+  } else if (input.length == 14) {
+    for (var element in listaDeEmpresas) {
+      if (element.socio.documento == input) {
+        imprimirEmpresas(element);
+      }
+    }
+  } else {
+    print(
+        "Não foi possível encontrar o sócio com esses dados. Tente novamente.");
+  }
+}
+
+void imprimirEmpresas(Empresa empresa) {
+  stdout.writeln("""
+ID: ${empresa.id}
+CNPJ: ${empresa.documento}
+Razão Social: ${empresa.razaoSocial}
+Nome Fantasia: ${empresa.nome}
+Telefone: ${empresa.telefone}
+Endereço: ${empresa.endereco["rua"]}, ${empresa.endereco["numero"]}, ${empresa.endereco["complemento"]}, ${empresa.endereco["bairro"]}, ${empresa.endereco["cidade"]}/${empresa.endereco["estado"]},${empresa.endereco["cep"]}
+Sócio:
+Documento: ${empresa.socio.documento}
+Nome: ${empresa.socio.nome}
+Endereço: ${empresa.socio.endereco["rua"]}, ${empresa.socio.endereco["numero"]}, ${empresa.socio.endereco["complemento"]}, ${empresa.socio.endereco["bairro"]}, ${empresa.socio.endereco["cidade"]}/${empresa.socio.endereco["estado"]}, ${empresa.socio.endereco["cep"]}
+""");
 }
