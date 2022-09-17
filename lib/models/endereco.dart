@@ -29,16 +29,14 @@ Consulte aqui: http://www.servicos.blog.br/listas/lista-de-estados-brasileiros-c
       estado = stdin.readLineSync()!.toUpperCase();
     }
     stdout.write("CEP: ");
-    String cepSemFormato = stdin.readLineSync()!;
-    while (validaCEP(cepSemFormato)) {
+    String cep = stdin.readLineSync()!;
+    while (validaCEP(cep)) {
       stdout.writeln("""
 Entrada inválida, por gentileza forneça apenas os numeros do CEP.
 """);
       stdout.write("CEP: ");
-      cepSemFormato = stdin.readLineSync()!;
+      cep = stdin.readLineSync()!;
     }
-    String cep =
-        "${cepSemFormato.substring(0, 2)}.${cepSemFormato.substring(2, 5)}-${cepSemFormato.substring(5)}";
     Map<String, String> novoEndereco = {};
     novoEndereco.putIfAbsent("rua", () => rua);
     novoEndereco.putIfAbsent("numero", () => numero);
