@@ -8,7 +8,7 @@ class Endereco {
 * Cadastro do Endereço.*
 ************************
 """);
-    stdout.write("Rua: ");
+    stdout.write("Logradouro: ");
     String rua = stdin.readLineSync() ?? "vazio";
     stdout.write("Numero: ");
     String numero = stdin.readLineSync() ?? "vazio";
@@ -20,7 +20,7 @@ class Endereco {
     String cidade = stdin.readLineSync() ?? "vazio";
     stdout.write("Sigla do Estado: ");
     String estado = stdin.readLineSync()!;
-    while (validaEndereco(estado)) {
+    while (validaSiglaEstado(estado)) {
       stdout.writeln("""
 Entrada inválida, por gentileza forneça a sigla.
 Consulte aqui: http://www.servicos.blog.br/listas/lista-de-estados-brasileiros-com-siglas-e-capitais/ 
@@ -29,7 +29,14 @@ Consulte aqui: http://www.servicos.blog.br/listas/lista-de-estados-brasileiros-c
       estado = stdin.readLineSync()!.toUpperCase();
     }
     stdout.write("CEP: ");
-    String cep = stdin.readLineSync() ?? "vazio";
+    String cep = stdin.readLineSync()!;
+    while (validaCEP(cep)) {
+      stdout.writeln("""
+Entrada inválida, por gentileza forneça apenas os numeros do CEP.
+""");
+      stdout.write("CEP: ");
+      cep = stdin.readLineSync()!.toUpperCase();
+    }
     Map<String, String> novoEndereco = {};
     novoEndereco.putIfAbsent("rua", () => rua);
     novoEndereco.putIfAbsent("numero", () => numero);
@@ -42,7 +49,7 @@ Consulte aqui: http://www.servicos.blog.br/listas/lista-de-estados-brasileiros-c
   }
 }
 
-bool validaEndereco(String input) {
+bool validaSiglaEstado(String input) {
   if (input.length != 2 ||
       input.contains("/") ||
       input.contains("-") ||
@@ -66,6 +73,47 @@ bool validaEndereco(String input) {
       input.contains("-7") ||
       input.contains("-8") ||
       input.contains("-9")) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool validaCEP(String input) {
+  if (input.length != 8 ||
+      input.contains("*") ||
+      input.contains(",") ||
+      input.contains(".") ||
+      input.contains("\\") ||
+      input.contains("/") ||
+      input.contains("+") ||
+      input.contains("-") ||
+      input.contains("a") ||
+      input.contains("b") ||
+      input.contains("c") ||
+      input.contains("d") ||
+      input.contains("e") ||
+      input.contains("f") ||
+      input.contains("g") ||
+      input.contains("h") ||
+      input.contains("i") ||
+      input.contains("j") ||
+      input.contains("k") ||
+      input.contains("l") ||
+      input.contains("m") ||
+      input.contains("n") ||
+      input.contains("o") ||
+      input.contains("p") ||
+      input.contains("q") ||
+      input.contains("r") ||
+      input.contains("s") ||
+      input.contains("t") ||
+      input.contains("u") ||
+      input.contains("v") ||
+      input.contains("w") ||
+      input.contains("x") ||
+      input.contains("y") ||
+      input.contains("z")) {
     return true;
   } else {
     return false;

@@ -51,8 +51,8 @@ Nome Fantasia: ${empresa.nome}
 Telefone: ${empresa.telefone}
 Endereço: ${empresa.endereco["rua"]}, ${empresa.endereco["numero"]}, ${empresa.endereco["complemento"]}, ${empresa.endereco["bairro"]}, ${empresa.endereco["cidade"]}/${empresa.endereco["estado"]},${empresa.endereco["cep"]}
 Sócio:
-${empresa.socio.documento}
-${empresa.socio.nome}
+Documento: ${empresa.socio.documento}
+Nome: ${empresa.socio.nome}
 Endereço: ${empresa.socio.endereco["rua"]}, ${empresa.socio.endereco["numero"]}, ${empresa.socio.endereco["complemento"]}, ${empresa.socio.endereco["bairro"]}, ${empresa.socio.endereco["cidade"]}/${empresa.socio.endereco["estado"]},${empresa.socio.endereco["cep"]}
 """);
       });

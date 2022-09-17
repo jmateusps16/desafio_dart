@@ -14,9 +14,9 @@ class PessoaJuridica extends Pessoa {
     String documento = stdin.readLineSync()!;
     while (validaCNPJ(documento)) {
       stdout.writeln("""
-Entrada inválida, por gentileza forneça apenas os 11 digitos do CPF.
+Entrada inválida, por gentileza forneça apenas os 14 digitos do CNPJ.
 """);
-      stdout.write("CPF: ");
+      stdout.write("CNPJ: ");
       documento = stdin.readLineSync()!.toUpperCase();
     }
     stdout.write("Razão Social: ");
