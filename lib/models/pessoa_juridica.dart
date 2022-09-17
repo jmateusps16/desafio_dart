@@ -12,6 +12,13 @@ class PessoaJuridica extends Pessoa {
     stdout.writeln("Por gentileza fornaça os dados solicitados abaixo.");
     stdout.write("CNPJ: ");
     String documento = stdin.readLineSync()!;
+    while (validaCNPJ(documento)) {
+      stdout.writeln("""
+Entrada inválida, por gentileza forneça apenas os 11 digitos do CPF.
+""");
+      stdout.write("CPF: ");
+      documento = stdin.readLineSync()!.toUpperCase();
+    }
     stdout.write("Razão Social: ");
     String razaoSocial = stdin.readLineSync()!;
     stdout.write("Nome Fantasia: ");
@@ -21,5 +28,18 @@ class PessoaJuridica extends Pessoa {
         PessoaJuridica(documento, razaoSocial, nome, endereco);
 
     return novaPessoaJuridica;
+  }
+}
+
+bool validaCNPJ(String input) {
+  if (input.length != 14 ||
+      input.contains("-") ||
+      input.contains("/") ||
+      input.contains("\\") ||
+      input.contains(",") ||
+      input.contains(".")) {
+    return true;
+  } else {
+    return false;
   }
 }

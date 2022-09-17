@@ -1,11 +1,12 @@
 import 'dart:io';
 import '../models/empresa.dart';
 
-List<Empresa> listaDeEmpresas = <Empresa>[];
+final List<Empresa> listaDeEmpresas = <Empresa>[];
 
 void mostrarMenuPrincipal() {
   int opcao = -1;
   stdout.writeln("""
+
 ********************************
 * Bem vindo                    *
 *                              *
@@ -13,7 +14,7 @@ void mostrarMenuPrincipal() {
 * 1. Cadastro Empresa          *
 * 2. Buscar Empresa            *
 * 3. Listar Empresas           *
-* 4. Selecionar Empresa        *
+* 4. Excluir Empresa           *
 ********************************
 """);
   stdout.write("Opção desejada: ");
@@ -49,7 +50,10 @@ Razão Social: ${empresa.razaoSocial}
 Nome Fantasia: ${empresa.nome}
 Telefone: ${empresa.telefone}
 Endereço: ${empresa.endereco["rua"]}, ${empresa.endereco["numero"]}, ${empresa.endereco["complemento"]}, ${empresa.endereco["bairro"]}, ${empresa.endereco["cidade"]}/${empresa.endereco["estado"]},${empresa.endereco["cep"]}
-Sócio: ${empresa.socio}
+Sócio:
+${empresa.socio.documento}
+${empresa.socio.nome}
+Endereço: ${empresa.socio.endereco["rua"]}, ${empresa.socio.endereco["numero"]}, ${empresa.socio.endereco["complemento"]}, ${empresa.socio.endereco["bairro"]}, ${empresa.socio.endereco["cidade"]}/${empresa.socio.endereco["estado"]},${empresa.socio.endereco["cep"]}
 """);
       });
       return mostrarMenuPrincipal();

@@ -8,6 +8,8 @@ environment:
 
 # dependencies:
 #   path: ^1.8.0
+dependencies:
+  uuid: 3.0.6
 
 dev_dependencies:
   lints: ^2.0.0

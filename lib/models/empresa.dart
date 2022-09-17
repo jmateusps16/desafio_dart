@@ -1,10 +1,11 @@
 import 'endereco.dart';
+import 'pessoa.dart';
 import 'pessoa_juridica.dart';
 import 'dart:io';
 
 class Empresa extends PessoaJuridica {
   final String telefone;
-  final String socio;
+  final Pessoa socio;
   Empresa(super.documento, super.razaoSocial, super.nome, this.telefone,
       super.endereco, this.socio);
 
@@ -19,7 +20,7 @@ class Empresa extends PessoaJuridica {
     stdout.write("Telefone: ");
     String telefone = stdin.readLineSync()!;
     Map<String, String> endereco = Endereco.lereEndereco();
-    String socio = stdin.readLineSync()!;
+    Pessoa socio = Pessoa.cadastroPessoa();
     Empresa novaEmpresa =
         Empresa(documento, razaoSocial, nome, telefone, endereco, socio);
 
